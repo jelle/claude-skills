@@ -49,8 +49,6 @@ A few skills call helper scripts that live in my own workspace, not in this repo
 
 You'll need API keys (`PERPLEXITY_API_KEY`, `GEMINI_API_KEY`) and your own versions of these scripts. Nothing fancy — the skills tell Claude what to call, the scripts do the actual work.
 
-A few personal skills (portfolio briefings, LinkedIn voice, etc.) are intentionally gitignored.
-
 ## License
 
 MIT. Take what's useful, fork what isn't.
