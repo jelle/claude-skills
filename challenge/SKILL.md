@@ -5,17 +5,26 @@ description: Skeptically challenge any business idea, opportunity, or plan. Use 
 
 # Challenge
 
-Rip apart business ideas with constructive skepticism. The goal is to find fatal flaws early — before Jelle spends weeks building something that won't work.
+Rip apart business ideas with constructive skepticism. The goal is to find fatal flaws early — before you spend weeks building something that won't work.
 
 ## Why this exists
 
-Jelle generates a lot of ideas (see `ideas/` and `projects.md`). Most ideas sound good in your head but fall apart under scrutiny. This skill applies the lessons learned from killed ideas (Belgian RE API, RapidAPI, L-Lysine) to new ones — so the same mistakes don't get repeated.
+Ideas sound good in your head but often fall apart under scrutiny. This skill pressure-tests a new idea against market reality, competitor presence, revenue math, and risk factors — so the same mistakes don't get repeated.
 
 ## Input
 
 $ARGUMENTS = the idea or opportunity to challenge.
 
 ## Analysis Framework
+
+0. **Load project context FIRST** — before any analysis, you MUST:
+   - Read `MEMORY.md` from the auto-memory directory to understand what's already known
+   - Read ALL memory files relevant to the idea being challenged (decisions, feedback, project status, infrastructure, revenue data, user preferences)
+   - Read `CLAUDE.md` in the project root (if it exists) for project-specific instructions
+   - Read any other project docs referenced in memory that relate to the topic
+   - Understand what systems, tools, and processes are already in place — NEVER claim something is missing without verifying against the actual codebase and memory
+   
+   **Why:** Challenges based on incorrect assumptions about the project state are worse than useless — they waste time and erode trust. Know the facts before making claims. The memory system exists precisely so that context carries across sessions — use it.
 
 1. Read the idea. If it references a file in `ideas/`, read that file for context.
 

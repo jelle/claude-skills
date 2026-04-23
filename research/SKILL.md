@@ -17,6 +17,15 @@ $ARGUMENTS = the research question or topic.
 
 ## Steps
 
+0. **Load project context FIRST** — before running any research, you MUST:
+   - Read `MEMORY.md` from the auto-memory directory to understand what's already known about this topic
+   - Read any memory files relevant to the research question
+   - Read `CLAUDE.md` in the project root (if it exists) for project-specific instructions
+   - Check if prior research already exists in `outputs/research/` that covers the same or overlapping topic
+   - Use this context to craft better Perplexity queries and avoid re-researching what we already know
+   
+   **Why:** Research without project context produces generic answers that ignore what's already been decided or discovered. Context-aware research builds on existing knowledge instead of repeating it. The memory system exists precisely so that context carries across sessions — use it.
+
 1. Generate a short topic slug from the question (e.g., "apify actor opportunities" → "apify-actor-opportunities").
 
 2. Run the Perplexity research script with sonar-pro for maximum depth:
@@ -47,5 +56,5 @@ The script supports multiple models. Default is sonar-pro (best quality).
 ## Examples
 
 - `/research what are the most profitable Apify actor niches in 2026`
-- `/research Belgian real estate market data sources and APIs`
+- `/research real estate market data sources and APIs`
 - `/research EU web scraping legal landscape GDPR compliance 2026`

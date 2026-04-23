@@ -9,7 +9,7 @@ Turn any tech/crypto/AI concept into a clear, jargon-free explanation that a sma
 
 ## Why this exists
 
-Tech moves fast. Most people — including very intelligent ones — aren't following every new AI tool, crypto scandal, or GitHub drama. When Jelle wants to explain something to a friend or family member, the explanation needs to land without requiring a CS degree. The goal isn't dumbing down — it's translating.
+Tech moves fast. Most people — including very intelligent ones — aren't following every new AI tool, crypto scandal, or GitHub drama. When you want to explain something to a friend or family member, the explanation needs to land without requiring a CS degree. The goal isn't dumbing down — it's translating.
 
 ## How to explain
 

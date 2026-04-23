@@ -22,6 +22,19 @@ $ARGUMENTS = the topic, question, or decision to debate.
 
 ## Steps
 
+0. **Load project context FIRST** — before spawning any agents, you MUST:
+   - Read `MEMORY.md` from the auto-memory directory to understand what's already known
+   - Read ALL memory files that are relevant to the debate topic (decisions, feedback, project status, infrastructure, user preferences)
+   - Read `CLAUDE.md` in the project root (if it exists) for project-specific instructions
+   - Read any other project docs referenced in memory that relate to the topic (architecture docs, status files, config files, etc.)
+   - **CRITICAL**: If a `project_strategic_principles.md` memory exists, read it and include ALL principles verbatim in the Context Brief as non-negotiable ground rules. Agents must not question or argue against these principles — they are settled strategy.
+   - Compile a **Context Brief** with TWO sections:
+     1. **Strategic Principles** (non-negotiable ground rules the user has set — agents must work WITHIN these, not challenge them)
+     2. **Project State** (what systems exist, what has been tried, decisions made, current metrics, user feedback)
+   - This Context Brief MUST be included in every agent's prompt so they argue from facts, not assumptions
+   
+   **Why:** Agents that debate without project context make uninformed claims about things that are already solved, contradict decisions already made, or propose solutions that already exist. This wastes time and erodes trust. The memory system exists precisely so that context carries across sessions — use it.
+
 1. **Analyze the topic** and select 5 debate personas that will produce the most productive friction. Default set:
    - **Systems Thinker** — sees interconnections, second-order effects, feedback loops
    - **Pragmatist** — what actually works in practice? What's the simplest path?
@@ -32,10 +45,11 @@ $ARGUMENTS = the topic, question, or decision to debate.
    Adjust personas to fit the topic. For investment questions, swap in a Risk Analyst and a Macro Strategist. For product ideas, swap in a Market Realist and a Growth Hacker.
 
 2. **Run 3 debate rounds** sequentially. Each round, spawn all 5 agents in parallel with:
+   - The **Context Brief** from step 0 (MANDATORY — agents must know the project state)
    - The original topic
    - Their persona description and instruction to stay in character
    - The debate history so far (empty for round 1)
-   - Instruction: "Read the previous arguments. Respond in 2-3 paragraphs. You MUST challenge at least one point from another agent. Build on what's strong, attack what's weak. Be specific — no vague agreement."
+   - Instruction: "Read the Context Brief carefully — these are FACTS about the project. Do not contradict them or assume things that conflict with them. Then read the previous arguments. Respond in 2-3 paragraphs. You MUST challenge at least one point from another agent. Build on what's strong, attack what's weak. Be specific — no vague agreement."
 
    After each round, collect all responses and append to the debate history before starting the next round.
 
@@ -74,6 +88,6 @@ Roughly $0.15-0.40 per run (5 agents x 3 rounds = 15 agent calls). Worth it for 
 
 ## Examples
 
-- `/agent-debate Should I build a schema therapy quiz as a website or native iOS app?`
+- `/agent-debate Should I build this product as a website or native iOS app?`
 - `/agent-debate Is agent-readiness for SMEs a real market or too early?`
-- `/agent-debate Should I rotate SBET profits into MSTR now or wait for a higher multiple?`
+- `/agent-debate Should I launch with a free tier or paid-only from day one?`

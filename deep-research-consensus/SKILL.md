@@ -17,6 +17,16 @@ $ARGUMENTS = the question, problem, or topic to research deeply.
 
 ## Steps
 
+0. **Load project context FIRST** — before spawning any agents, you MUST:
+   - Read `MEMORY.md` from the auto-memory directory to understand what's already known
+   - Read ALL memory files that are relevant to the research topic (decisions, feedback, project status, infrastructure, user preferences)
+   - Read `CLAUDE.md` in the project root (if it exists) for project-specific instructions
+   - Read any other project docs referenced in memory that relate to the topic
+   - Compile a **Context Brief** (bullet points) summarizing: what systems/tools/processes are already in place, what has been tried, what decisions have been made, current state/metrics, and any relevant user feedback or preferences
+   - This Context Brief MUST be included in every agent's prompt so they research from facts, not assumptions
+   
+   **Why:** Agents that research without project context make uninformed claims about things that are already solved, contradict decisions already made, or propose solutions that already exist. This wastes time and erodes trust. The memory system exists precisely so that context carries across sessions — use it.
+
 1. **Analyze the question** and determine:
    - Is this a strategic/ideation question (use 7 agents) or a factual/analytical question (use 5 agents)?
    - What kind of framing variations would produce the most diverse responses?
@@ -31,10 +41,12 @@ $ARGUMENTS = the question, problem, or topic to research deeply.
    - Data-driven/quantitative lens
    - Time-horizon variations (short-term vs long-term)
    - Resource-constrained perspective (what if budget is tight?)
-   - Geographic/cultural lens (EU-specific, Belgian market, etc.)
+   - Geographic/cultural lens (regional, country-specific, etc.)
 
 3. **Spawn all agents in parallel** using the Agent tool. Each agent should:
+   - Receive the **Context Brief** from step 0 (MANDATORY — agents must know the project state)
    - Receive the core question + its unique framing instruction
+   - Be told: "Read the Context Brief carefully — these are FACTS about the project. Do not contradict them or assume things that conflict with them."
    - Be told to produce 3-5 concrete, specific answers/ideas/recommendations
    - Use web search if the question requires current data
    - Return structured output: numbered list with brief reasoning per item
@@ -66,7 +78,7 @@ $ARGUMENTS = the question, problem, or topic to research deeply.
 
 5. **Save the report** to `outputs/research/[YYYY-MM-DD]-consensus-[topic-slug].md`
 
-6. Present the report in chat, highlighting the outliers — those are the ideas Jelle wouldn't have found with a single query.
+6. Present the report in chat, highlighting the outliers — those are the ideas you wouldn't have found with a single query.
 
 ## Cost
 
@@ -74,6 +86,6 @@ Roughly $0.10-0.30 per run depending on agent count and whether web search is us
 
 ## Examples
 
-- `/deep-research-consensus What's the best monetization model for a schema therapy quiz app?`
+- `/deep-research-consensus What's the best monetization model for a niche consumer app?`
 - `/deep-research-consensus How should a UX designer position themselves in an AI-first job market?`
-- `/deep-research-consensus What Chrome extension niches are underserved for Belgian users?`
+- `/deep-research-consensus What Chrome extension niches are currently underserved?`
