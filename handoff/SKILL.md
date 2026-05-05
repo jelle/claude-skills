@@ -45,9 +45,7 @@ The handoff is written in second-person to future-Claude, not as a status report
 <one concrete action the fresh session should take first>
 
 ## Pick up by
-1. Run `/prime` to load workspace context + memory.
-2. Read this handoff.
-3. Start with "Next step" above.
+Run `/prime`. It auto-loads this handoff and deletes the pending file. Then start with "Next step" above.
 ```
 
 Keep each section tight. Better short and truthful than long and padded. Omit sections that genuinely have nothing (e.g. "Open questions" if there are none — just drop the heading).
@@ -58,16 +56,18 @@ Keep each section tight. Better short and truthful than long and padded. Omit se
 
 2. **Save to disk** at `outputs/handoffs/YYYY-MM-DD-HHMM-<slug>.md` where `<slug>` is a 2-4 word kebab-case hint of the topic. Create the directory if it doesn't exist. If the current workspace has no `outputs/` convention, fall back to `~/.claude/handoffs/`.
 
-3. **Copy to clipboard** via `pbcopy < <saved-file>` (macOS). This is the critical step — the user's whole reason for invoking this skill is to paste into a fresh session.
+3. **Stage for /prime** by copying the same file to `~/.claude/pending-handoff.md` (single known path, overwritten each time). The next `/prime` in any workspace auto-loads and deletes this file — that's how the handoff survives `/clear` without manual pasting.
 
-4. **Confirm** in one sentence: where it was saved, that it's on the clipboard, and the filename. Then show the full handoff text back to the user so they can sanity-check before clearing.
+4. **Copy to clipboard** via `pbcopy < <saved-file>` (macOS) as a belt-and-suspenders fallback in case the user works outside Claude Code.
 
-5. **Stop.** Do not prompt the user about saving to memory. The user will tell you what to save (e.g. "save X to memory") if anything from this session needs persisting. Don't ask, don't propose — just produce the handoff and end.
+5. **Confirm** in one sentence: saved path, pending-handoff staged, clipboard populated. Then show the full handoff text back to the user so they can sanity-check before clearing.
+
+6. **Stop.** Do not prompt the user about saving to memory. The user will tell you what to save (e.g. "save X to memory") if anything from this session needs persisting. Don't ask, don't propose — just produce the handoff and end.
 
 ## Don't
 
-- Don't skip the clipboard step. That's the whole point.
+- Don't skip the `~/.claude/pending-handoff.md` write. That's what `/prime` auto-loads — skipping it forces the user back to manual-paste.
 - Don't ask the user about memory — they'll tell you what to save if anything's worth keeping.
-- Don't ask the user to approve the summary before copying — they want it fast. They'll read it after it's on the clipboard and adjust next time if needed.
+- Don't ask the user to approve the summary before staging — they want it fast. They'll read it after and adjust next time if needed.
 - Don't include verbatim code blocks in the handoff unless the code itself IS the decision (rare). Reference files by path instead.
 - Don't pad. If the session was 3 messages, the handoff is 3 lines.
