@@ -9,7 +9,7 @@ Produce a compact handoff summary of the current session, save a dated copy to d
 
 ## Why this exists
 
-Context windows fill up. Many users clear around 15% remaining (per Nate Herk's workflow). A good handoff = new session continues productively instead of starting cold.
+Context windows fill up. Many users clear around 15% remaining. A good handoff = new session continues productively instead of starting cold.
 
 ## Output format (Standard detail level)
 
