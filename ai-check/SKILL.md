@@ -43,7 +43,7 @@ If a file path is given, read the file first. If no arguments and no selection c
 
 ### Tone tells
 
-12. **Overwritten descriptions** — "a subtle visual treatment that makes the overlap visible without a hard divider line" when "the system shows content sits behind the bar" says the same thing in half the words. If a description works harder than the concept requires, trim it.
+12. **Overwritten descriptions** — "a carefully orchestrated mechanism that provides users with real-time visual feedback" when "shows a live preview" says the same thing in four words. If a description works harder than the concept requires, trim it.
 
 13. **Fake hedging** — "It might be worth considering..." when the text is clearly recommending. Say it directly.
 
