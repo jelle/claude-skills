@@ -23,16 +23,19 @@ If you're new to skills: a skill is just a folder with a `SKILL.md` file that Cl
 - **image-generation-brand** — Logos, app icons, flat-vector brand illustrations.
 - **image-generation-infographic** — Clean infographics, flowcharts, process diagrams, comparison charts.
 
+### Session management
+- **prime** — Session bootstrap. Picks up any pending handoff, reads `CLAUDE.md`, loads your memory index, checks workspace status. Run at the start of every session.
+- **handoff** — Produce a session handoff summary and stage it for the next `/prime`. Also copies to clipboard as fallback. These two are designed as a pair: `/handoff` at end of session, `/prime` at start of next.
+
 ### Utility
 - **preview** — Render any markdown file as a styled HTML page and open it in the browser.
-- **handoff** — Produce a session handoff summary and copy it to clipboard, so you can `/clear` and paste into a fresh session without losing context.
 
 ## Install
 
-These live in my Dropbox and are symlinked into `~/.claude/skills/`. Easiest way to use them:
+Clone and symlink into `~/.claude/skills/`:
 
 ```bash
-git clone git@github.com:jelle/claude-skills.git ~/claude-skills
+git clone <your-repo-url> ~/claude-skills
 ln -s ~/claude-skills/* ~/.claude/skills/
 ```
 

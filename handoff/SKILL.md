@@ -45,7 +45,8 @@ The handoff is written in second-person to future-Claude, not as a status report
 <one concrete action the fresh session should take first>
 
 ## Pick up by
-Run `/prime`. It auto-loads this handoff and deletes the pending file. Then start with "Next step" above.
+Start your next session with `/prime` — it auto-loads this handoff and deletes the pending file.
+No `/prime`? Paste the clipboard contents into your new session instead.
 ```
 
 Keep each section tight. Better short and truthful than long and padded. Omit sections that genuinely have nothing (e.g. "Open questions" if there are none — just drop the heading).
@@ -54,11 +55,11 @@ Keep each section tight. Better short and truthful than long and padded. Omit se
 
 1. **Compose the summary** using what you remember from this session. Be concrete — names of files, exact decisions, actual blockers. No fluff like "we had a productive discussion about X."
 
-2. **Save to disk** at `outputs/handoffs/YYYY-MM-DD-HHMM-<slug>.md` where `<slug>` is a 2-4 word kebab-case hint of the topic. Create the directory if it doesn't exist. If the current workspace has no `outputs/` convention, fall back to `~/.claude/handoffs/`.
+2. **Save to project** at `.claude/handoff.md` in the project root (overwritten each time — one active handoff per project). Create `.claude/` if it doesn't exist.
 
-3. **Stage for /prime** by copying the same file to `~/.claude/pending-handoff.md` (single known path, overwritten each time). The next `/prime` in any workspace auto-loads and deletes this file — that's how the handoff survives `/clear` without manual pasting.
+3. **Archive a copy** at `.claude/handoffs/YYYY-MM-DD-HHMM-<slug>.md` where `<slug>` is a 2-4 word kebab-case hint of the topic. Create the directory if it doesn't exist. This is the history — the active handoff at `.claude/handoff.md` is what `/prime` reads.
 
-4. **Copy to clipboard** via `pbcopy < <saved-file>` (macOS) as a belt-and-suspenders fallback in case the user works outside Claude Code.
+4. **Copy to clipboard** as a belt-and-suspenders fallback in case the user works outside Claude Code. Use `pbcopy` on macOS, `xclip -selection clipboard` on Linux, or `clip.exe` on WSL/Windows.
 
 5. **Confirm** in one sentence: saved path, pending-handoff staged, clipboard populated. Then show the full handoff text back to the user so they can sanity-check before clearing.
 
@@ -66,7 +67,7 @@ Keep each section tight. Better short and truthful than long and padded. Omit se
 
 ## Don't
 
-- Don't skip the `~/.claude/pending-handoff.md` write. That's what `/prime` auto-loads — skipping it forces the user back to manual-paste.
+- Don't skip the `.claude/handoff.md` write. That's what `/prime` reads — skipping it forces the user back to manual paste.
 - Don't ask the user about memory — they'll tell you what to save if anything's worth keeping.
 - Don't ask the user to approve the summary before staging — they want it fast. They'll read it after and adjust next time if needed.
 - Don't include verbatim code blocks in the handoff unless the code itself IS the decision (rare). Reference files by path instead.
